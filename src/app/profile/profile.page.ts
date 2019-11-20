@@ -16,6 +16,7 @@ export class ProfilePage implements OnInit {
   userId : any;
   loading : any;
   data : any[] = [];
+  alert : any;
   barcodeScannerOptions: BarcodeScannerOptions;
   constructor(private barcodeScanner : BarcodeScanner,private mainSvc : MainService,private loadingCtrl : LoadingController,
     private alertCtrl : AlertController,private afs : AngularFirestore
@@ -49,12 +50,23 @@ export class ProfilePage implements OnInit {
               this.afs.collection('event').doc(barcodeData.text).update({
                 'anggotaDatang' : firestore.FieldValue.arrayUnion(this.userId)
               })
-              console.log('masuk');
+              this.showSuccesfulUploadAlert();
             }
           }
           this.loading.dismiss();
         });
       });
     });
+  }
+  async showSuccesfulUploadAlert() {
+    let alert = this.alertCtrl.create({
+      header: 'Success!',
+      subHeader: 'Lets clean our place!',
+      buttons: ['OK']
+    });
+    (await alert).present();
+
+    // clear the previous photo data in the variable
+
   }
 }
