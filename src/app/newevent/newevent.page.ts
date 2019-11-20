@@ -148,6 +148,7 @@ export class NeweventPage implements OnInit {
         record['anggota'] = [];
         record['alamat'] = this.address;
         record['points'] = 0;
+        record['anggotaDatang'] = [];
         console.log(record);
         this.mainSvc.addDataEvent(record);
       })

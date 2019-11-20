@@ -52,7 +52,8 @@ export class MyeventsPage implements OnInit {
           doc.data().lat,
           doc.data().lng,
           doc.data().alamat,
-          doc.data().point
+          doc.data().point,
+          doc.data().anggotaDatang
         )
         
         this.loadedEvents.push(dat);
@@ -73,7 +74,7 @@ export class MyeventsPage implements OnInit {
     .toPromise()
     .then(snapshot => {
       snapshot.forEach(doc => {
-        this.angt = doc.data().anggota;
+        this.angt = doc.data().anggotaDatang;
         let angtSize = this.angt.length;
         console.log(angtSize);
         if(angtSize >= 5){

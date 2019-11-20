@@ -1,0 +1,31 @@
+@font-face {
+    font-family: 'default';
+    src: url('/assets/fonts/Montserrat-Bold.otf');
+  }
+
+.foreground {
+    z-index: 2;
+    position: absolute;
+    margin: auto;
+    pointer-events: none;
+}
+.foregroundprofile {
+    z-index: 5;
+    position: absolute;
+    top: 270px;
+}
+.top {
+    font-family: 'default';
+    z-index: 3;
+    position: absolute;
+    margin: auto;
+}
+
+.posisi {
+    left: 190px;
+    top: 557px;
+}
+
+.posisiminus {
+    left: 20px;
+}

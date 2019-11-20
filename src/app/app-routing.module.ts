@@ -21,9 +21,7 @@ const routes: Routes = [
   { path: 'newevent', loadChildren: './newevent/newevent.module#NeweventPageModule' },
   { path: 'menu', loadChildren: './menu/menu.module#MenuPageModule' },
   { path: 'myevents', loadChildren: './myevents/myevents.module#MyeventsPageModule' },
-
-
-
+  { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' },
 ];
 
 @NgModule({
