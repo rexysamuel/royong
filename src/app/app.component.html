@@ -1,3 +1,73 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu side="start" menuId="m1">
+    <ion-header>
+      <ion-toolbar style="--background: #0c3602;">
+ 
+        <ion-grid class="foreground posisi">
+          <ion-row class="foreground">
+            <ion-col class="foreground">
+              <div class="ion-text-uppercase foreground">
+                <img src="assets/image/profile_picture.png" style="width: 100px;" class="padding foreground">
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <ion-grid class="foreground posisi2">
+          <ion-row>
+            <ion-col>
+              <div>
+                <font size="+2" class="ion-text-center font padding" color="white"><b>Rexy Samuel</b></font>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <ion-grid class="foreground posisi3">
+          <ion-row>
+            <ion-col>
+              <div>
+                <font size="-1" class="ion-text-center font padding" color="gray">Pahlawan Kebersihan</font>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <br>
+        <br>
+        <br>
+        <br>
+
+
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <br>
+      <ion-menu-toggle auto-hide="true">
+        <ion-item lines="none" [routerLink]="['./timeline']">
+          <ion-icon name="home" slot="start"></ion-icon>
+          <ion-label>Home</ion-label>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-icon name="chatbubbles" slot="start"></ion-icon>
+          <ion-label>Chat Room</ion-label>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-icon name="calendar" slot="start"></ion-icon>
+          <ion-label>Events</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-content>
+
+    <ion-footer>
+      <ion-item lines="none" [routerLink]="['./form']">
+        <ion-icon name="log-out" slot="start"></ion-icon>
+        <ion-label>Log Out</ion-label>
+      </ion-item>
+    </ion-footer>
+  </ion-menu>
+  <ion-router-outlet main></ion-router-outlet>
 </ion-app>

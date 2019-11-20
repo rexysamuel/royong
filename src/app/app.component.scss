@@ -1,0 +1,41 @@
+@font-face {
+  font-family: "default";
+  src: url("/assets/fonts/Montserrat-Bold.otf");
+}
+
+//ion-toolbar {
+//  --background: url("/assets/image/background_sidebar.png") no-repeat fixed center;
+//}
+
+.font {
+  font-family: "Montserrat";
+}
+
+.background {
+  background: url("/assets/image/bg_welcome.png");
+  z-index: -999;
+  align-items: center !important;
+}
+
+.foreground {
+  z-index: 999;
+  background-color: rgba(0,0,0,0);
+color: #FFFFFF;
+}
+
+.posisi {
+  padding-top: 15px;
+  padding-left: 15px;
+}
+
+.posisi2 {
+  position: fixed;
+  top: 120px;
+  padding-left: 15px;
+}
+
+.posisi3 {
+  position: fixed;
+  top: 155px;
+  padding-left: 15px;
+}
