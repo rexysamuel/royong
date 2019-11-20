@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>My Event</ion-title>
+    <ion-buttons slot="start">
+        <ion-menu-button menu="m1"></ion-menu-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-content fullscreen>
+        <ion-card *ngFor="let data of loadedEvents">
+          <img [src]="data.url" />
+          <ion-card-header>
+            <ion-card-subtitle>{{data.alamat}}</ion-card-subtitle>
+            <ion-card-title>{{data.nama_event}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            {{data.deskripsi}}
+            <ion-item lines="none">
+            <ion-button slot="end"fill='gray' align="right">
+                <ion-icon name="ios-arrow-down"></ion-icon>
+            </ion-button>
+          </ion-item>
+          </ion-card-content>
+        </ion-card>
+</ion-content>

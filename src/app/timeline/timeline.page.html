@@ -1,11 +1,11 @@
 <ion-header>
   <ion-toolbar>
 
-    <ion-buttons slot="start">
+    <ion-buttons style="--background:green"slot="start">
       <ion-menu-button menu="m1"></ion-menu-button>
     </ion-buttons>
     <ion-button slot="end" fill="clear"(click)="refresh()">
-        <ion-icon name="refresh"></ion-icon>
+        <ion-icon style="--background:green" name="refresh"></ion-icon>
     </ion-button>
     <ion-title class="font"><b>Timeline</b></ion-title>
 
@@ -63,7 +63,8 @@
 
       <!-- Content -->
       <ion-card-content class="font">
-        {{data.deskripsi}}
+          <img class="konten-gambar-detail" [src]="data.url">
+        <h1>{{data.nama_event}}</h1>
       </ion-card-content>
     </ion-grid>
 

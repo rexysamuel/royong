@@ -9,6 +9,7 @@ export class Event{
     anggota : [];
     lat : string;
     lng : string;
+    alamat : string;
     constructor(eid : string,
                 uid : string,
                 nama_event:string,
@@ -18,7 +19,8 @@ export class Event{
                 url : string , 
                 anggota : any,
                 lat : string,
-                lng : string){
+                lng : string,
+                alamat : string){
                     this.eid = eid;
                     this.uid = uid;
                     this.nama_event = nama_event;
@@ -29,5 +31,6 @@ export class Event{
                     this.anggota = anggota;
                     this.lat = lat;
                     this.lng = lng;
+                    this.alamat = alamat;
                 }
 }

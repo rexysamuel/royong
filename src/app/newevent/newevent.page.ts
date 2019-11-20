@@ -145,6 +145,7 @@ export class NeweventPage implements OnInit {
         record['lng'] = this.lng;
         record['url'] = this.downloadURL;
         record['anggota'] = {};
+        record['alamat'] = this.address;
         this.mainSvc.addDataEvent(record);
       })
       this.loading.dismiss();

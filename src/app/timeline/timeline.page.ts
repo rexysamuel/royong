@@ -49,7 +49,8 @@ export class TimelinePage implements OnInit {
           doc.data().url,
           doc.data().anggota,
           doc.data().lat,
-          doc.data().lng
+          doc.data().lng,
+          doc.data().alamat
         )
         
         this.loadedEvent.push(dat);
