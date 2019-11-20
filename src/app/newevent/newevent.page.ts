@@ -1,3 +1,4 @@
+import { AngularFirestore } from 'angularfire2/firestore';
 import { AlertController, LoadingController, ActionSheetController } from '@ionic/angular';
 import { MainService } from './../main.service';
 import { Component, OnInit } from '@angular/core';
@@ -20,7 +21,9 @@ export class NeweventPage implements OnInit {
   userId : any;
   downloadURL : any;
   tanggal : any;
-  nama : any;
+  nama_event : any;
+  nama_pembuat : any;
+  deskripsi : any;
   loading : any;
   options : any;
   imageResponse : any;
@@ -28,7 +31,8 @@ export class NeweventPage implements OnInit {
               public alertCtrl : AlertController,
               public loadingCtrl : LoadingController,
               public actionSheetCtrl : ActionSheetController,
-              private imagePicker : ImagePicker
+              private imagePicker : ImagePicker,
+              private firestore : AngularFirestore
               ) { }
 //public imagePicker : ImagePicker
   ngOnInit() {
@@ -43,6 +47,15 @@ export class NeweventPage implements OnInit {
     });
     this.user = this.mainSvc.getUserId();
     this.userId = this.user.uid;
+    this.firestore.collection('users',ref => ref.where('id','==',this.userId))
+    .get()
+    .toPromise()
+    .then(snapshot =>{
+      snapshot.forEach(doc => {
+        this.nama_pembuat = doc.data().nama;
+      });
+    });
+    
   }
   timeline(){
     
@@ -104,11 +117,13 @@ export class NeweventPage implements OnInit {
       message:'Uploading!',
     });
     await this.loading.present();
-    this.nama = form.value.nama;
+    this.nama_event = form.value.nama;
     this.tanggal = form.value.tanggal;
+    this.deskripsi = form.value.deskripsi;
+    console.log(this.deskripsi);
     console.log(this.tanggal);
     let storageRef = firebase.storage().ref();
-    const filename = this.nama;
+    const filename = this.nama_event;
     //const filePath = 'images/events/'+this.nama;
     const imageRef = storageRef.child(`images/events/${filename}.jpg`);
     //const task:AngularFireUploadTask = this.afStorage.upload(filePath,this.captureDataUrl);
@@ -120,17 +135,16 @@ export class NeweventPage implements OnInit {
         this.downloadURL = data;
         console.log(this.downloadURL);
         let record = {};
-        record['nama'] = this.nama;
+        record['nama_event'] = this.nama_event;
+        record['nama_pembuat'] = this.nama_pembuat;
+        record['deskripsi'] = this.deskripsi;
         record['tanggal'] = this.tanggal;
-        record['eid'] = this.userId;
+        record['eid'] = '1';
+        record['uid'] = this.userId;
         record['lat'] = this.lat;
         record['lng'] = this.lng;
         record['url'] = this.downloadURL;
-        record['anggota'] = {
-          'asdfasdfasd' : [
-            0
-          ]
-        };
+        record['anggota'] = {};
         this.mainSvc.addDataEvent(record);
       })
       this.loading.dismiss();

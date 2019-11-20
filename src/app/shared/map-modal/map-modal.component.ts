@@ -1,22 +1,36 @@
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Component, OnInit, AfterViewInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-map-modal',
   templateUrl: './map-modal.component.html',
   styleUrls: ['./map-modal.component.scss'],
 })
-export class MapModalComponent implements OnInit,AfterViewInit {
-  lat =-6.256422;
-  lng =  106.619019;
+export class MapModalComponent implements OnInit {
+  lat = -6.256460;
+  lng = 106.618683;
   address : any;
   @ViewChild('map',{static:false}) mapElementRef : ElementRef;
   constructor(private modalCtrl: ModalController,
-    private renderer: Renderer2) { }
+    private renderer: Renderer2,
+    private geolocation : Geolocation) { }
 
-  ngOnInit() {}
-  ngAfterViewInit(){
+  ngOnInit() {
+
+  }
+  location(){
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.lat = resp.coords.latitude;
+      this.lng = resp.coords.longitude;
+      this.ionViewDidEnter();
+     }).catch((error) => {
+       console.log('Error getting location', error);
+     });
+  }
+  ionViewDidEnter(){
     this.getGoogleMaps().then((googleMaps) => {
       const mapElement = this.mapElementRef.nativeElement;
       const map = new googleMaps.Map(mapElement, {

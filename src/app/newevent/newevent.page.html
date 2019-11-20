@@ -24,7 +24,16 @@
     </ion-grid>
     <!-- Description -->
     <ion-grid class="ion-padding">
-      <font class="font" color="white"><b>Description</b></font>
+      <ion-input
+      placeholder="Description"
+      inputmode="text" 
+      required 
+      ngModel 
+      name="deskripsi" 
+      #deskripsiCtrl="ngModel"
+      type="text"
+      class="font"
+      color="white"></ion-input>
       <!-- Location -->
 
       <ion-row>
@@ -39,7 +48,7 @@
             <font class="ion-text-center font" color="white"> Location</font>
           </div>
           <div *ngIf="address">
-            <font class="ion-text-center font" color="white">{{address}}</font>
+            <font class="ion-text-center font" >{{address}}</font>
           </div>
         </ion-col>
         <ion-col size="1.5" style="align-self: center;">

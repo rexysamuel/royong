@@ -4,7 +4,9 @@
     <ion-buttons slot="start">
       <ion-menu-button menu="m1"></ion-menu-button>
     </ion-buttons>
-
+    <ion-button slot="end" fill="clear"(click)="refresh()">
+        <ion-icon name="refresh"></ion-icon>
+    </ion-button>
     <ion-title class="font"><b>Timeline</b></ion-title>
 
     <!--
@@ -21,7 +23,7 @@
 </ion-header>
 
 <ion-content class="background">
-  <ion-card>
+  <ion-card *ngFor="let data of loadedEvent" [routerLink]="['./',data.eid]">
     <ion-grid>
       <!-- Header -->
       <ion-row class="padding">
@@ -38,9 +40,11 @@
               <ion-row>
                 <ion-col size="10">
                   <div>
-                    <font color="black" class="ion-text-center font"><b>Rexy Samuel</b></font>
+                    <font color="black" class="ion-text-center font"><b>{{data.nama_pembuat}}</b></font>
                     <br>
-                    <font size="-1" class="ion-text-center font">8 Nov</font>
+                    <font size="-1" class="ion-text-center font">{{data.tanggal | date: 'EEEE,dd-MMM-yyyy'}}</font>
+                    <br>
+                    <font size="-1" class="ion-text-center font">{{data.tanggal | date: 'HH:mm'}}</font>
                   </div>
                 </ion-col>
               </ion-row>
@@ -59,7 +63,7 @@
 
       <!-- Content -->
       <ion-card-content class="font">
-        Gotong royong di Desa Citareyum, hari Minggu tanggal 25 Desember 2019, jam 6.00-10.00.
+        {{data.deskripsi}}
       </ion-card-content>
     </ion-grid>
 
@@ -92,170 +96,7 @@
         <!-- Tombol More -->
         <ion-col size="3">
           <div>
-            <ion-button expand="block" shape="round" size="medium" style="--background:green" (click)="timeline()">
-              <font size="-2" class="ion-text-center font">More</font>
-            </ion-button>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
-
-  <!--  -->
-
-  <ion-card>
-    <ion-grid>
-      <!-- Header -->
-      <ion-row class="padding">
-        <!-- Profile Picture -->
-        <ion-col size="3">
-          <div>
-            <img src="assets/image/profile_picture.png">
-          </div>
-        </ion-col>
-        <!-- Title Nama -->
-        <ion-col size="7">
-          <div>
-            <ion-grid>
-              <ion-row>
-                <ion-col size="10">
-                  <div>
-                    <font color="black" class="ion-text-center font"><b>Rexy Samuel</b></font>
-                    <br>
-                    <font size="-1" class="ion-text-center font">8 Nov</font>
-                  </div>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </div>
-        </ion-col>
-        <ion-col size="2">
-          <div>
-            <ion-button fill='gray'>
-              <ion-icon name="ios-arrow-down"></ion-icon>
-            </ion-button>
-          </div>
-        </ion-col>
-      </ion-row>
-
-      <!-- Content -->
-      <ion-card-content class="font">
-        Gotong royong di Gading Serpong. Nah yang ini dengan slot gambar.
-        <img class="konten-gambar" src="assets/image/1.png">
-      </ion-card-content>
-    </ion-grid>
-
-    <!-- Footer -->
-    <ion-grid class="ion-padding">
-      <ion-row>
-        <ion-col size="3">
-          <div>
-            <ion-button fill='gray'>
-              <ion-icon name="md-share"></ion-icon>
-            </ion-button>
-          </div>
-        </ion-col>
-        <!-- Tanggal -->
-        <ion-col size="3" class="ion-padding-vertical">
-          <div>
-            <font size="-1" class="ion-text-center font">8 Nov <ion-icon name="md-time" style="fill: green;">
-              </ion-icon>
-            </font>
-          </div>
-        </ion-col>
-        <!-- Jarak -->
-        <ion-col size="3" class="ion-padding-vertical">
-          <div>
-            <font size="-1" class="ion-text-center font">1.7 KM <ion-icon name="pin" style="fill: green;">
-              </ion-icon>
-            </font>
-          </div>
-        </ion-col>
-        <!-- Tombol More -->
-        <ion-col size="3">
-          <div>
-            <ion-button expand="block" shape="round" size="medium" style="--background:green" (click)="timeline()">
-              <font size="-2" class="ion-text-center font">More</font>
-            </ion-button>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
-
-  <!-- -->
-
-  <ion-card>
-    <ion-grid>
-      <!-- Header -->
-      <ion-row class="padding">
-        <!-- Profile Picture -->
-        <ion-col size="3">
-          <div>
-            <img src="assets/image/profile_picture.png">
-          </div>
-        </ion-col>
-        <!-- Title Nama -->
-        <ion-col size="7">
-          <div>
-            <ion-grid>
-              <ion-row>
-                <ion-col size="10">
-                  <div>
-                    <font color="black" class="ion-text-center font"><b>Rexy Samuel</b></font>
-                    <br>
-                    <font size="-1" class="ion-text-center font">8 Nov</font>
-                  </div>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </div>
-        </ion-col>
-        <ion-col size="2">
-          <div>
-            <ion-button fill='gray'>
-              <ion-icon name="ios-arrow-down"></ion-icon>
-            </ion-button>
-          </div>
-        </ion-col>
-      </ion-row>
-
-      <!-- Content -->
-      <ion-card-content class="font">
-        Gotong royong di Desa Citareyum, hari Minggu tanggal 25 Desember 2019, jam 6.00-10.00.
-      </ion-card-content>
-    </ion-grid>
-
-    <!-- Footer -->
-    <ion-grid class="ion-padding">
-      <ion-row>
-        <ion-col size="3">
-          <div>
-            <ion-button fill='gray'>
-              <ion-icon name="md-share"></ion-icon>
-            </ion-button>
-          </div>
-        </ion-col>
-        <!-- Tanggal -->
-        <ion-col size="3" class="ion-padding-vertical">
-          <div>
-            <font size="-1" class="ion-text-center font">8 Nov <ion-icon name="md-time" style="fill: green;">
-              </ion-icon>
-            </font>
-          </div>
-        </ion-col>
-        <!-- Jarak -->
-        <ion-col size="3" class="ion-padding-vertical">
-          <div>
-            <font size="-1" class="ion-text-center font">1.7 KM <ion-icon name="pin" style="fill: green;">
-              </ion-icon>
-            </font>
-          </div>
-        </ion-col>
-        <!-- Tombol More -->
-        <ion-col size="3">
-          <div>
-            <ion-button expand="block" shape="round" size="medium" style="--background:green" (click)="timeline()">
+            <ion-button expand="block" shape="round" size="medium" style="--background:green">
               <font size="-2" class="ion-text-center font">More</font>
             </ion-button>
           </div>
