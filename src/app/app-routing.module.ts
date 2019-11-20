@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'newevent', loadChildren: './newevent/newevent.module#NeweventPageModule' },
   { path: 'menu', loadChildren: './menu/menu.module#MenuPageModule' },
   { path: 'timeline-detail', loadChildren: './timeline-detail/timeline-detail.module#TimelineDetailPageModule' },
+  { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' },
 ];
 
 @NgModule({
