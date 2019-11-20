@@ -10,6 +10,7 @@ export class Event{
     lat : string;
     lng : string;
     alamat : string;
+    point : number;
     constructor(eid : string,
                 uid : string,
                 nama_event:string,
@@ -20,7 +21,8 @@ export class Event{
                 anggota : any,
                 lat : string,
                 lng : string,
-                alamat : string){
+                alamat : string,
+                point : number){
                     this.eid = eid;
                     this.uid = uid;
                     this.nama_event = nama_event;
@@ -32,5 +34,6 @@ export class Event{
                     this.lat = lat;
                     this.lng = lng;
                     this.alamat = alamat;
+                    this.point = point;
                 }
 }

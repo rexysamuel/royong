@@ -86,3 +86,8 @@ ion-button.transparent {
   left: 190px;
   top: 557px;
 }
+ion-input{
+  --color : white !important;
+  --placeholder-color: white;
+  --placeholder-opacity: 1;
+}

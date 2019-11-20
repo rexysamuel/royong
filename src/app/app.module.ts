@@ -6,7 +6,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFirestoreModule, FirestoreSettingsToken } from 'angularfire2/firestore';
@@ -25,7 +25,9 @@ import { Network } from '@ionic-native/network';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFirestoreModule,
-    HttpClientModule],
+    HttpClientModule,
+    NgxQRCodeModule
+    ],
   providers: [
     StatusBar,
     SplashScreen,
@@ -35,6 +37,7 @@ import { Network } from '@ionic-native/network';
     NativeGeocoder,
     ImagePicker,
     HttpClient,
+    BarcodeScanner,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: FirestoreSettingsToken, useValue: {}}
   ],

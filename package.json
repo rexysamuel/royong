@@ -1,5 +1,5 @@
 {
-  "name": "Royong",
+  "name": "GoRong",
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
@@ -45,6 +45,7 @@
     "core-js": "^2.5.4",
     "firebase": "^7.4.0",
     "ionic": "^5.4.6",
+    "ngx-qrcode2": "0.0.9",
     "phonegap-plugin-barcodescanner": "^8.1.0",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",

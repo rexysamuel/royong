@@ -11,9 +11,11 @@ export interface events{
   deskripsi : string;
   tanggal : string;
   url : string;
-  anggota : {};
+  anggota : [];
   lat : string;
   lng : string;
+  alamat : string;
+  point : number;
 }
 @Injectable({
   providedIn: 'root'
@@ -23,6 +25,7 @@ export class MainService {
   private user:firebase.User;
   private event : events;
   private userId : string;
+  private eventId : string;
   currAddress = new BehaviorSubject<string>('');
   latAddress = new BehaviorSubject<string>('');
   lngAddress = new BehaviorSubject<string>('');
@@ -33,6 +36,12 @@ export class MainService {
   }
   getAddress(){
     return this.currAddress.asObservable();
+  }
+  getEventId(){
+    return this.eventId;
+  }
+  setEventId(id : string){
+    this.eventId = id;
   }
   getLat(){
     return this.latAddress.asObservable();
@@ -81,6 +90,7 @@ export class MainService {
     return this.user;
   }
   addDataEvent(record){
+   console.log(record);
    this.firestore.collection('event').add(record);
    return this.firestore.collection('event',ref => ref.where('eid','==','1'))
    .get()

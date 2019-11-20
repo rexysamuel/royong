@@ -59,7 +59,8 @@ export class TimelineDetailPage implements OnInit {
           doc.data().anggota,
           doc.data().lat,
           doc.data().lng,
-          doc.data().alamat
+          doc.data().alamat,
+          doc.data().point
         )
         this.anggotaSize = dat.anggota.length;
         this.event.push(dat);

@@ -1,3 +1,6 @@
+import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { BarcodeComponent } from './../component/barcode/barcode.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -19,8 +22,10 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    NgxQRCodeModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [MyeventsPage]
+  declarations: [MyeventsPage,BarcodeComponent],
+  entryComponents:[BarcodeComponent]
 })
 export class MyeventsPageModule {}

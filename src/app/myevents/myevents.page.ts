@@ -1,5 +1,6 @@
+import { BarcodeComponent } from './../component/barcode/barcode.component';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, AlertController, ModalController } from '@ionic/angular';
 import { MainService } from 'src/app/main.service';
 import { Event } from './../event.model';
 import { Component, OnInit } from '@angular/core';
@@ -18,8 +19,11 @@ export class MyeventsPage implements OnInit {
   anggotaSize : any;
   user : firebase.User;
   userId : any;
+  angt : any[] = [];
   constructor(public mainSvc : MainService,public loadingCtrl : LoadingController,
-              public firestore : AngularFirestore) { }
+              public firestore : AngularFirestore,
+              public alertCtrl : AlertController,
+              public modalCtrl : ModalController) { }
 
   ngOnInit() {
     this.user = this.mainSvc.getUserId();
@@ -47,12 +51,84 @@ export class MyeventsPage implements OnInit {
           doc.data().anggota,
           doc.data().lat,
           doc.data().lng,
-          doc.data().alamat
+          doc.data().alamat,
+          doc.data().point
         )
-        this.anggotaSize = dat.anggota.length;
+        
         this.loadedEvents.push(dat);
         this.loading.dismiss();
       });
+      this.loading.dismiss();
     });
+  }
+  async finish(id : string){
+    var i ;
+    this.loading = await this.loadingCtrl.create({
+      message : 'Loading'
+    });
+    (await this.loading).present();
+
+    this.firestore.collection('event',ref => ref.where('eid','==',id))
+    .get()
+    .toPromise()
+    .then(snapshot => {
+      snapshot.forEach(doc => {
+        this.angt = doc.data().anggota;
+        let angtSize = this.angt.length;
+        console.log(angtSize);
+        if(angtSize >= 5){
+          for(i=0 ; i < angtSize ;i++){
+            this.firestore.collection('users', ref => ref.where('id','==',this.angt[i]))
+            .get()
+            .toPromise()
+            .then(snapshot => {
+              snapshot.forEach(doc => {
+                let pnt = doc.data().point;
+                let temp = {
+                  point : 0
+                }
+                temp.point = pnt + 10;
+                this.firestore.doc('users/'+doc.id).update(temp);
+              });
+            });
+          }
+          this.firestore.doc<any>('event/'+doc.id).delete();
+          this.loading.dismiss();
+          this.showSuccesfulUploadAlert(1);
+        } else {
+          this.loading.dismiss();
+          this.showSuccesfulUploadAlert(0);
+        }
+      });
+    });
+
+  }
+  async showSuccesfulUploadAlert(nilai : number) {
+    if(nilai == 1){
+      let alert = this.alertCtrl.create({
+        header: 'Finish!',
+        subHeader: 'Thanks for making our cleaner!',
+        buttons: ['OK']
+      });
+      (await alert).present();
+    } else if(nilai == 0){
+      let alert = this.alertCtrl.create({
+        header: 'Failed!',
+        subHeader: 'Member not reach minimum requirements ( 5 members )',
+        buttons: ['OK']
+      });
+      (await alert).present();
+    }
+
+
+    // clear the previous photo data in the variable
+
+  }
+  async showModalBarcode(id : string){
+    this.mainSvc.setEventId(id);
+    const modal = await this.modalCtrl.create({
+      component : BarcodeComponent
+    });
+    return await modal.present();
   }
 }

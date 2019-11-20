@@ -15,8 +15,8 @@ import { ImagePicker} from '@ionic-native/image-picker/ngx';
 export class NeweventPage implements OnInit {
   captureDataUrl : any ;
   address = '';
-  lat = '';
-  lng = '';
+  lat : any;
+  lng : any;
   user : firebase.User;
   userId : any;
   downloadURL : any;
@@ -53,6 +53,7 @@ export class NeweventPage implements OnInit {
     .then(snapshot =>{
       snapshot.forEach(doc => {
         this.nama_pembuat = doc.data().nama;
+        console.log(this.nama_pembuat);
       });
     });
     
@@ -135,17 +136,19 @@ export class NeweventPage implements OnInit {
         this.downloadURL = data;
         console.log(this.downloadURL);
         let record = {};
-        record['nama_event'] = this.nama_event;
+        record['nama_event'] =this.nama_event;
         record['nama_pembuat'] = this.nama_pembuat;
-        record['deskripsi'] = this.deskripsi;
+        record['deskripsi']  = this.deskripsi;
         record['tanggal'] = this.tanggal;
-        record['eid'] = '1';
+        record['eid'] ='1';
         record['uid'] = this.userId;
         record['lat'] = this.lat;
         record['lng'] = this.lng;
         record['url'] = this.downloadURL;
-        record['anggota'] = {};
+        record['anggota'] = [];
         record['alamat'] = this.address;
+        record['points'] = 0;
+        console.log(record);
         this.mainSvc.addDataEvent(record);
       })
       this.loading.dismiss();

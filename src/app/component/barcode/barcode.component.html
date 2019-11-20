@@ -1,0 +1,15 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>My Event</ion-title>
+      <ion-buttons (click)="back()"slot="start">
+          <ion-icon name="arrow-back"></ion-icon>
+        </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+<ion-grid>
+    <ion-row *ngIf="createdCode">
+        <ion-col>
+          <ngx-qrcode [qrc-value]="createdCode"></ngx-qrcode>
+        </ion-col>
+      </ion-row>
+</ion-grid>

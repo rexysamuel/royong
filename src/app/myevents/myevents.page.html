@@ -18,10 +18,14 @@
           <ion-card-content>
             {{data.deskripsi}}
             <ion-item lines="none">
-            <ion-button slot="end"fill='gray' align="right">
-                <ion-icon name="ios-arrow-down"></ion-icon>
+                <ion-button slot="end" color="success" (click)="showModalBarcode(data.eid)"fill='solid'>
+                    Show Barcode
+                </ion-button>
+            <ion-button slot="end" color="success" (click)="finish(data.eid)"fill='solid'>
+                finish
             </ion-button>
           </ion-item>
+
           </ion-card-content>
         </ion-card>
 </ion-content>
