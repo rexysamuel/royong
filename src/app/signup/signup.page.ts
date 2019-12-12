@@ -47,6 +47,7 @@ export class SignupPage implements OnInit {
       username:data_username,
       alamat:data_alamat,
       no_telepon:data_noTel,
+      point : 0,
       id:null
     }
     this.mainSvc.createUser(recordAuth)
@@ -66,16 +67,15 @@ export class SignupPage implements OnInit {
   async presentAlert(nilai : any){
     let header_data,subHeader_data;
     if(nilai == 1){
-      header_data = 'Sukses'; 
-      subHeader_data = 'Akun anda sukses terdaftar';
+      header_data = 'Success'; 
     }else{
-      header_data = 'Gagal'; 
-      subHeader_data = 'Akun anda gagal terdaftar';
+      header_data = 'Failed'; 
+      subHeader_data = 'Account registration failed!';
     }
     const alert = await this.alertCtrl.create({
       header: header_data,
       subHeader: subHeader_data,
-      message: 'Silahkan ketuk OK untuk melanjutkan',
+      message: 'Press Ok for continue',
       buttons: [
         {
           text:'Ok',

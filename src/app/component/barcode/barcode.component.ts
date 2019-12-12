@@ -19,6 +19,6 @@ export class BarcodeComponent implements OnInit {
     this.createdCode = this.mainSvc.getEventId();
   }
   back(){
-    this.router.navigate(['./timeline']);
+    this.router.navigate(['/timeline']);
   }
 }

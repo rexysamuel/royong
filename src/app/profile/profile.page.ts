@@ -17,6 +17,7 @@ export class ProfilePage implements OnInit {
   loading : any;
   data : any[] = [];
   alert : any;
+  points : any;
   barcodeScannerOptions: BarcodeScannerOptions;
   constructor(private barcodeScanner : BarcodeScanner,private mainSvc : MainService,private loadingCtrl : LoadingController,
     private alertCtrl : AlertController,private afs : AngularFirestore
@@ -30,6 +31,14 @@ export class ProfilePage implements OnInit {
       showTorchButton: true,
       showFlipCameraButton: true
     };
+    this.afs.collection('users',ref => ref.where('id','==',this.userId))
+    .get()
+    .toPromise()
+    .then(snapshot => {
+      snapshot.forEach(doc => {
+          this.points = doc.data().point;
+      })
+    })
   }
   async scanCode(){
     var i ;
